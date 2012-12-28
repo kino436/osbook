@@ -22,7 +22,8 @@ H8WRITE_SERDEV = COM1	# シリアル接続先
 OBJS	= vector.o startup.o main.o
 OBJS	+= lib.o serial.o
 
-TARGET	= kzload	# 生成する実行形式のファイル名
+# 生成する実行形式のファイル名
+TARGET	= kzload
 
 # コンパイルオプション
 CFLAGS	= -Wall -mh -nostdinc -nostdlib -fno-builtin
@@ -42,7 +43,7 @@ all :		$(TARGET)
 
 # 実行形式の生成ルール
 $(TARGET) :	$(OBJS)
-		$(CC) $(OBJS) -o $(TARGET) $(LFLAGS)
+		$(CC) $(OBJS) -o $(TARGET) $(CFLAGS) $(LFLAGS)
 		cp $(TARGET) $(TARGET).elf
 		$(STRIP) $(TARGET)
 
@@ -65,4 +66,6 @@ write : 	$(TARGET).mot
 		$(H8WRITE) -3069 -f20 $(TARGET).mot $(H8WRITE_SERDEV)
 
 # フォルダの掃除
-clean :		\rm -f $(OBJS) $(TARGET) $(TARGET).elf $(TARGET).mot
+.PHONY: clean
+clean :		
+		rm -f $(OBJS) $(TARGET) $(TARGET).elf $(TARGET).mot
