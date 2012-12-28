@@ -3,8 +3,8 @@
 	.global	_start
 	.type	_start,@function
 _start:
-	mov.l	#0xffff00,sp	#ƒXƒ^ƒbƒNƒ|ƒCƒ“ƒ^‚Ìİ’è
-	jsr	@_main		#main‚ÌŒÄ‚Ño‚µ
+	mov.l	#0xffff00,sp	#ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿ã®è¨­å®š
+	jsr	@_main		#mainã®å‘¼ã³å‡ºã—
 
 1:
-	bra 	1b		#–³ŒÀƒ‹[ƒv
+	bra 	1b		#ç„¡é™ãƒ«ãƒ¼ãƒ—

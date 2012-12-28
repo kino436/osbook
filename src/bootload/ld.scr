@@ -4,13 +4,13 @@ ENTRY("_start")
 
 SECTIONS
 {
-	. = 0x0;	/* メモリの先頭番地から配置 */
+	. = 0x0;	/* 繝｡繝｢繝ｪ縺ｮ蜈磯ｭ逡ｪ蝨ｰ縺九ｉ驟咲ｽｮ */
 
-	.vectors : {	/* 割り込みベクタ */
+	.vectors : {	/* 蜑ｲ繧願ｾｼ縺ｿ繝吶け繧ｿ */
 		vector.o(.data)
 	}
 
-	.text : {	/* テキスト領域 */
+	.text : {	/* 繝�繧ｭ繧ｹ繝磯伜沺 */
 		*(.text)
 	}
 
@@ -20,11 +20,11 @@ SECTIONS
 		*(.rodata.*)
 	}
 
-	.data : {	/* データ領域 */
+	.data : {	/* 繝�繝ｼ繧ｿ鬆伜沺 */
 		*(.data)
 	}
 
-	.bss : {	/* BSS領域 */
+	.bss : {	/* BSS鬆伜沺 */
 		*(.bss)
 		*(COMMON)
 	}

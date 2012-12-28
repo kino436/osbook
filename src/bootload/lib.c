@@ -2,7 +2,7 @@
 #include "serial.h"
 #include "lib.h"
 
-/* 1•¶š‘—M */
+/* 1æ–‡å­—é€ä¿¡ */
 int putc(unsigned char c)
 {
 	if (c == '\n')
@@ -10,7 +10,7 @@ int putc(unsigned char c)
 	return serial_send_byte(SERIAL_DEFAULT_DEVICE, c);
 }
 
-/* •¶š—ñ‘—M */
+/* æ–‡å­—åˆ—é€ä¿¡ */
 int puts(unsigned char *str)
 {
 	while (*str)

@@ -4,7 +4,7 @@
 
 int main(void)
 {
-	serial_init(SERIAL_DEFAULT_DEVICE); //ƒVƒŠƒAƒ‹ƒfƒoƒCƒX‚ð‰Šú‰»
+	serial_init(SERIAL_DEFAULT_DEVICE); //ã‚·ãƒªã‚¢ãƒ«ãƒ‡ãƒã‚¤ã‚¹ã‚’åˆæœŸåŒ–
 
 	puts("Hello World\n");
 

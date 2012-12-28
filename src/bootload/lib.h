@@ -1,7 +1,7 @@
 #ifndef _LIB_H_INCLUDED_
 #define _LIB_H_INCLUDED_
 
-int putc(unsigned char c);	/* 1•¶š‘—M */
-int puts(unsigned char *str);	/* •¶š—ñ‘—M */
+int putc(unsigned char c);	/* 1æ–‡å­—é€ä¿¡ */
+int puts(unsigned char *str);	/* æ–‡å­—åˆ—é€ä¿¡ */
 
 #endif

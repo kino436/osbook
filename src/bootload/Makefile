@@ -3,7 +3,7 @@ ARCH 	= h8300-elf
 BINDIR	= $(PREFIX)/bin
 ADDNAME	= $(ARCH)-
 
-# —˜—p‚·‚éƒc[ƒ‹—Þ‚ÌŽw’è
+# åˆ©ç”¨ã™ã‚‹ãƒ„ãƒ¼ãƒ«é¡žã®æŒ‡å®š
 AR	= $(BINDIR)/$(ADDNAME)ar
 AS	= $(BINDIR)/$(ADDNAME)as
 CC	= $(BINDIR)/$(ADDNAME)gcc
@@ -14,26 +14,26 @@ OBJDUMP	= $(BINDIR)/$(ADDNAME)objdump
 RANLIB	= $(BINDIR)/$(ADDNAME)ranlib
 STRIP	= $(BINDIR)/$(ADDNAME)strip
 
-H8WRITE = ../tools/h8write/kz_h8write	# ƒtƒ‰ƒbƒVƒ…‘‚«ž‚Ýƒc[ƒ‹
+H8WRITE = ../tools/h8write/kz_h8write	# ãƒ•ãƒ©ãƒƒã‚·ãƒ¥æ›¸ãè¾¼ã¿ãƒ„ãƒ¼ãƒ«
 
-H8WRITE_SERDEV = COM1	# ƒVƒŠƒAƒ‹Ú‘±æ
+H8WRITE_SERDEV = COM1	# ã‚·ãƒªã‚¢ãƒ«æŽ¥ç¶šå…ˆ
 
-# ƒRƒ“ƒpƒCƒ‹‚³‚ê‚½ƒ\[ƒXƒR[ƒhŒQ
+# ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚ŒãŸã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ç¾¤
 OBJS	= vector.o startup.o main.o
 OBJS	+= lib.o serial.o
 
-# ¶¬‚·‚éŽÀsŒ`Ž®‚Ìƒtƒ@ƒCƒ‹–¼
+# ç”Ÿæˆã™ã‚‹å®Ÿè¡Œå½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«å
 TARGET	= kzload
 
-# ƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“
+# ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 CFLAGS	= -Wall -mh -nostdinc -nostdlib -fno-builtin
-#CFLAGS	+= -mint32 # int‚ð32ƒrƒbƒg‚É‚·‚é‚ÆŠ|‚¯ŽZAŠ„‚èŽZ‚ª‚Å‚«‚È‚­‚È‚é
+#CFLAGS	+= -mint32 # intã‚’32ãƒ“ãƒƒãƒˆã«ã™ã‚‹ã¨æŽ›ã‘ç®—ã€å‰²ã‚Šç®—ãŒã§ããªããªã‚‹
 CFLAGS	+= -I.
 #CFLAGS	+= -g
 CFLAGS	+= -Os
 CFLAGS	+= -DKZLOAD
 
-# ƒŠƒ“ƒNƒIƒvƒVƒ‡ƒ“
+# ãƒªãƒ³ã‚¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 LFLAGS	= -static -T ld.scr -L.
 
 .SUFFIXES: .c .o
@@ -41,31 +41,31 @@ LFLAGS	= -static -T ld.scr -L.
 
 all :		$(TARGET)
 
-# ŽÀsŒ`Ž®‚Ì¶¬ƒ‹[ƒ‹
+# å®Ÿè¡Œå½¢å¼ã®ç”Ÿæˆãƒ«ãƒ¼ãƒ«
 $(TARGET) :	$(OBJS)
 		$(CC) $(OBJS) -o $(TARGET) $(CFLAGS) $(LFLAGS)
 		cp $(TARGET) $(TARGET).elf
 		$(STRIP) $(TARGET)
 
-# *.cƒtƒ@ƒCƒ‹‚ÌƒRƒ“ƒpƒCƒ‹ƒ‹[ƒ‹
+# *.cãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãƒ«ãƒ¼ãƒ«
 .c.o :		$<
 		$(CC) -c $(CFLAGS) $<
 
-# *.sƒtƒ@ƒCƒ‹‚ÌƒRƒ“ƒpƒCƒ‹ƒ‹[ƒ‹
+# *.sãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãƒ«ãƒ¼ãƒ«
 .s.o :		$<
 		$(CC) -c $(CFLAGS) $<
 
-# ƒ‚ƒgƒ[ƒ‰SƒŒƒR[ƒhƒtƒH[ƒ}ƒbƒg‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹
+# ãƒ¢ãƒˆãƒ­ãƒ¼ãƒ©Sãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«
 $(TARGET).mot :	$(TARGET)
 		$(OBJCOPY) -O srec $(TARGET) $(TARGET).mot
 
 image :		$(TARGET).mot
 
-# ƒtƒ‰ƒbƒVƒ…ROM‚Ö‚Ì“]‘—
+# ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ROMã¸ã®è»¢é€
 write : 	$(TARGET).mot
 		$(H8WRITE) -3069 -f20 $(TARGET).mot $(H8WRITE_SERDEV)
 
-# ƒtƒHƒ‹ƒ_‚Ì‘|œ
+# ãƒ•ã‚©ãƒ«ãƒ€ã®æŽƒé™¤
 .PHONY: clean
 clean :		
 		rm -f $(OBJS) $(TARGET) $(TARGET).elf $(TARGET).mot

@@ -1,10 +1,10 @@
 #ifndef _DEFINES_H_INCLUDED_
 #define _DEFINES_H_INCLUDED_
 
-#define NULL ((void *)0)	// NULLƒ|ƒCƒ“ƒ^‚Ì’è‹`
-#define SERIAL_DEFAULT_DEVICE 1	// •W€‚ÌƒVƒŠƒAƒ‹ƒfƒoƒCƒX
+#define NULL ((void *)0)	// NULLãƒã‚¤ãƒ³ã‚¿ã®å®šç¾©
+#define SERIAL_DEFAULT_DEVICE 1	// æ¨™æº–ã®ã‚·ãƒªã‚¢ãƒ«ãƒ‡ãƒã‚¤ã‚¹
 
-// ƒrƒbƒg•ŒÅ’è‚Ì®”Œ^
+// ãƒ“ãƒƒãƒˆå¹…å›ºå®šã®æ•´æ•°å‹
 typedef unsigned char	uint8;
 typedef unsigned short	uint16;
 typedef unsigned long	uint32;
