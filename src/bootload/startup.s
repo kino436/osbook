@@ -3,7 +3,7 @@
 	.global	_start
 	.type	_start,@function
 _start:
-	mov.l	#0xffff00,sp	#スタックポインタの設定
+	mov.l	#_stack,sp	#スタックポインタの設定
 	jsr	@_main		#mainの呼び出し
 
 1:

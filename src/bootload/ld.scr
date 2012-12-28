@@ -2,30 +2,56 @@ OUTPUT_FORMAT("elf32-h8300")
 OUTPUT_ARCH(h8300h)
 ENTRY("_start")
 
+MEMORY
+{
+/* ROMの定義 */
+	romall(rx)	: org = 0x000000, len = 0x080000 /* 512KB */
+	vectors(r)	: org = 0x000000, len = 0x000100 /* top of ROM */
+	rom(rx)		: org = 0x000100, len = 0x07ff00
+
+/* RAMの定義 */
+	ramall(rwx)	: org = 0xffbf20, len = 0x004000 /* 16KB */
+	data(rwx)	: org = 0xfffc20, len = 0x000300
+	stack(rw)	: org = 0xffff00, len = 0x000000 /* end of RAM */
+}
+
 SECTIONS
 {
-	. = 0x0;	/* メモリの先頭番地から配置 */
-
 	.vectors : {	/* 割り込みベクタ */
 		vector.o(.data)
-	}
+	} > vectors
 
 	.text : {	/* テキスト領域 */
+		_test_start = . ;	/* textセクションの先頭 */
 		*(.text)
-	}
+		_etext = . ;		/* textセクションの終端 */
+	} > rom
 
 	.rodata : {
+		_rodata_start = . ;
 		*(.strings)
 		*(.rodata)
 		*(.rodata.*)
-	}
+		_erodata = . ;
+	} > rom
 
 	.data : {	/* データ領域 */
+		_data_start = . ;
 		*(.data)
-	}
+		_edata = . ;
+	} > data AT> rom	/* dataセクションのVA≠PA対応 */
 
 	.bss : {	/* BSS領域 */
+		_bss_start = . ;
 		*(.bss)
 		*(COMMON)
-	}
+		_ebss = . ;
+	} > data AT> rom	/* bssセクションのVA≠PA対応 */
+
+	. = ALIGN(4);	/* 4バイトアライメント */
+	_end = . ;	/* セクションの終端 */
+
+	.stack : {
+		_stack = . ;	/* スタックを指すシンボル */
+	} > stack
 }
