@@ -20,7 +20,7 @@ H8WRITE_SERDEV = COM4	# シリアル接続先
 
 # コンパイルされたソースコード群
 OBJS	= vector.o startup.o main.o
-OBJS	+= lib.o serial.o xmodem.o
+OBJS	+= lib.o serial.o xmodem.o elf.o
 
 # 生成する実行形式のファイル名
 TARGET	= kzload

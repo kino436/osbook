@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "serial.h"
 #include "xmodem.h"
+#include "elf.h"
 #include "lib.h"
 
 static int init(void)
@@ -35,7 +36,7 @@ static int dump(char *buf, long size)
 		if ((i & 0xf) == 15) {
 			puts("\n");
 		} else {
-			if ((i & 0xf == 7)) puts(" ");
+			if ((i & 0xf) == 7) puts(" ");
 			puts(" ");
 		}
 	}
@@ -81,6 +82,8 @@ int main(void)
 			putxval(size, 0);
 			puts("\n");
 			dump(loadbuf, size);
+		} else if (!strcmp(buf, "run")) { /* ELF形式ファイルの実行 */
+			elf_load(loadbuf); /* メモリ上に展開 */
 		} else {
 			puts("unknown.\n");
 		}
