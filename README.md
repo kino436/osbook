@@ -5,5 +5,6 @@
 
 ■Memo
 cdd：bootloadディレクトリに移動
+cds：osディレクトリに移動
 左奥USBポート：COM4
 左手前USBポート：COM5
