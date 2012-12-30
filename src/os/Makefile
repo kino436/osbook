@@ -15,7 +15,7 @@ RANLIB	= $(BINDIR)/$(ADDNAME)ranlib
 STRIP	= $(BINDIR)/$(ADDNAME)strip
 
 # コンパイルされたソースコード群
-OBJS	= startup.o main.o
+OBJS	= startup.o main.o interrupt.o
 OBJS	+= lib.o serial.o
 
 # 生成する実行形式のファイル名
@@ -34,6 +34,7 @@ LFLAGS	= -static -T ld.scr -L.
 
 .SUFFIXES: .c .o
 .SUFFIXES: .s .o
+.SUFFIXES: .S .o
 
 all :		$(TARGET)
 
@@ -50,6 +51,11 @@ $(TARGET) :	$(OBJS)
 # *.sファイルのコンパイルルール
 .s.o :		$<
 		$(CC) -c $(CFLAGS) $<
+
+# *.Sファイルのコンパイルルール
+.S.o :		$<
+		$(CC) -c $(CFLAGS) $<
+
 
 # フォルダの掃除
 .PHONY: clean

@@ -19,7 +19,7 @@ H8WRITE = ../tools/h8write/kz_h8write	# フラッシュ書き込みツール
 H8WRITE_SERDEV = COM4	# シリアル接続先
 
 # コンパイルされたソースコード群
-OBJS	= vector.o startup.o main.o
+OBJS	= vector.o startup.o intr.o main.o interrupt.o
 OBJS	+= lib.o serial.o xmodem.o elf.o
 
 # 生成する実行形式のファイル名
@@ -38,6 +38,7 @@ LFLAGS	= -static -T ld.scr -L.
 
 .SUFFIXES: .c .o
 .SUFFIXES: .s .o
+.SUFFIXES: .S .o
 
 all :		$(TARGET)
 
@@ -53,6 +54,10 @@ $(TARGET) :	$(OBJS)
 
 # *.sファイルのコンパイルルール
 .s.o :		$<
+		$(CC) -c $(CFLAGS) $<
+
+# *.Sファイルのコンパイルルール
+.S.o :		$<
 		$(CC) -c $(CFLAGS) $<
 
 # モトローラSレコードフォーマットへの変換ルール
