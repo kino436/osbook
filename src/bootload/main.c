@@ -35,6 +35,7 @@ static void printval(void)
 
 int main(void)
 {
+	init();
 	puts("Hello World\n");
 
 	printval();
