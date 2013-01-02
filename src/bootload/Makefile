@@ -16,7 +16,7 @@ STRIP	= $(BINDIR)/$(ADDNAME)strip
 
 H8WRITE = ../tools/h8write/kz_h8write	# フラッシュ書き込みツール
 
-H8WRITE_SERDEV = COM1	# シリアル接続先
+H8WRITE_SERDEV = COM4	# シリアル接続先
 
 # コンパイルされたソースコード群
 OBJS	= vector.o startup.o main.o
