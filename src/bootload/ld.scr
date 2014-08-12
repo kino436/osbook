@@ -24,7 +24,8 @@ SECTIONS
 	} > vectors
 
 	.text : {	/* テキスト領域 */
-		_test_start = . ;	/* textセクションの先頭 */
+		_text_start = . ;	/* textセクションの先頭 */
+		*(.text.startup)
 		*(.text)
 		_etext = . ;		/* textセクションの終端 */
 	} > rom

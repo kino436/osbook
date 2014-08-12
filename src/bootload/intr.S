@@ -3,7 +3,7 @@
 	.section .text
 
 	.global	_intr_softerr
-	.type	_intr_softerr,@function
+#	.type	_intr_softerr,@function
 _intr_softerr:
 	# 汎用レジスタの値をスタックに保存する
 	mov.l	er6,@-er7
@@ -27,7 +27,7 @@ _intr_softerr:
 	rte
 
 	.global _intr_syscall
-	.type _intr_syscall,@function
+#	.type _intr_syscall,@function
 _intr_syscall:
 	mov.l	er6,@-er7
 	mov.l	er5,@-er7
@@ -50,7 +50,7 @@ _intr_syscall:
 	rte
 	
 	.global _intr_serintr
-	.type _intr_serintr,@function
+#	.type _intr_serintr,@function
 _intr_serintr:
 	mov.l	er6,@-er7
 	mov.l	er5,@-er7
