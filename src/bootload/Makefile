@@ -1,4 +1,4 @@
-PREFIX	= /usr/local
+PREFIX	= ~/osbook/tools
 ARCH 	= h8300-elf
 BINDIR	= $(PREFIX)/bin
 ADDNAME	= $(ARCH)-
@@ -14,9 +14,9 @@ OBJDUMP	= $(BINDIR)/$(ADDNAME)objdump
 RANLIB	= $(BINDIR)/$(ADDNAME)ranlib
 STRIP	= $(BINDIR)/$(ADDNAME)strip
 
-H8WRITE = ../tools/h8write/kz_h8write	# フラッシュ書き込みツール
+H8WRITE = ../../tools/kz_h8write	# フラッシュ書き込みツール
 
-H8WRITE_SERDEV = COM4	# シリアル接続先
+H8WRITE_SERDEV = /dev/tty.usbserial	# シリアル接続先
 
 # コンパイルされたソースコード群
 OBJS	= vector.o startup.o intr.o main.o interrupt.o
