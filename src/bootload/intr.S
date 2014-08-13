@@ -14,9 +14,13 @@ _intr_softerr:
 	mov.l	er1,@-er7
 	mov.l	er0,@-er7
 	mov.l	er7,er1
+	mov.l	#_intrstack,sp	#割り込みスタック
+	mov.l	er1,@-er7	#旧スタックポインタを保存
 	mov.w	#SOFTVEC_TYPE_SOFTERR,r0
 	jsr	@_interrupt		#interruptの呼び出し
 	# スタックから汎用レジスタの値を復旧する
+	mov.l	@er7+,er1
+	mov.l	er1,er7	#旧スタックポインタの値を復旧
 	mov.l	@er7+,er0
 	mov.l	@er7+,er1
 	mov.l	@er7+,er2
@@ -37,9 +41,13 @@ _intr_syscall:
 	mov.l	er1,@-er7
 	mov.l	er0,@-er7
 	mov.l	er7,er1
+	mov.l	#_intrstack,sp	#割り込みスタック
+	mov.l	er1,@-er7	#旧スタックポインタを保存
 	mov.w	#SOFTVEC_TYPE_SYSCALL,r0
 	jsr	@_interrupt		#interruptの呼び出し
 	# スタックから汎用レジスタの値を復旧する
+	mov.l	@er7+,er1
+	mov.l	er1,er7	#旧スタックポインタの値を復旧
 	mov.l	@er7+,er0
 	mov.l	@er7+,er1
 	mov.l	@er7+,er2
@@ -60,9 +68,13 @@ _intr_serintr:
 	mov.l	er1,@-er7
 	mov.l	er0,@-er7
 	mov.l	er7,er1
+	mov.l	#_intrstack,sp	#割り込みスタック
+	mov.l	er1,@-er7	#旧スタックポインタを保存
 	mov.w	#SOFTVEC_TYPE_SERINTR,r0
 	jsr	@_interrupt		#interruptの呼び出し
 	# スタックから汎用レジスタの値を復旧する
+	mov.l	@er7+,er1
+	mov.l	er1,er7	#旧スタックポインタの値を復旧
 	mov.l	@er7+,er0
 	mov.l	@er7+,er1
 	mov.l	@er7+,er2

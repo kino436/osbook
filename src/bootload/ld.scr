@@ -14,7 +14,8 @@ MEMORY
 	softvec(rw)	: org = 0xffbf20, len = 0x000040 /* top of RAM */
 	buffer(rwx)	: org = 0xffdf20, len = 0x001d00 /*  8KB */
 	data(rwx)	: org = 0xfffc20, len = 0x000300
-	stack(rw)	: org = 0xffff00, len = 0x000000 /* end of RAM */
+	bootstack(rw)	: org = 0xffff00, len = 0x000000
+	intrstack(rw)	: org = 0xffff00, len = 0x000000 /* end of RAM */
 }
 
 SECTIONS
@@ -62,7 +63,11 @@ SECTIONS
 	. = ALIGN(4);	/* 4バイトアライメント */
 	_end = . ;	/* セクションの終端 */
 
-	.stack : {
-		_stack = . ;	/* スタックを指すシンボル */
-	} > stack
+	.bootstack : {
+		_bootstack = . ;	/* ブートスタックを指すシンボル */
+	} > bootstack
+
+	.intrstack : {
+		_intrstack = . ;	/* 割り込みスタックを指すシンボル */
+	} > intrstack
 }
